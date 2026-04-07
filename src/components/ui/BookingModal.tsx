@@ -77,7 +77,7 @@ export const BookingModal = () => {
 
         // Google Sheets Script Endpoint
         const res = await fetch(
-          "https://script.google.com/macros/s/AKfycby0V7V8j32RnoU3ymvynxDNaH1bwdZEx14WqBN2R26EcNrKEyB3qXAm8qwDAnWWJQxc/exec",
+          "https://script.google.com/macros/s/AKfycbyUhRQTTgrc7FmlWBzgAfpVWotsVrhgf8zNSl7x2lWyANKXs3mL2GNfVonk9RJKYde4/exec",
           {
             method: "POST",
             mode: 'no-cors', // Google Apps Script usually requires no-cors if not handling OPTIONS
