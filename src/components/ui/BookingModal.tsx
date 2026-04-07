@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from 'react';
 import { X, User, Phone, ArrowRight, CheckCircle2, Loader2 } from 'lucide-react';
@@ -110,12 +110,12 @@ export const BookingModal = () => {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-[#1C2530]/80 backdrop-blur-sm transition-opacity animate-in fade-in duration-300"
+        className="absolute inset-0 bg-[#0c5d69]/80 backdrop-blur-sm transition-opacity animate-in fade-in duration-300"
         onClick={() => setIsOpen(false)}
       ></div>
 
       {/* Modal Box */}
-      <div className="relative bg-white rounded-3xl w-full max-w-md shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] overflow-hidden border border-[#E3EAEF] animate-in fade-in zoom-in-95 duration-300">
+      <div className="relative bg-white rounded-3xl w-full max-w-md shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] overflow-hidden border border-[#cae2f2] animate-in fade-in zoom-in-95 duration-300">
         
         {/* Close Button */}
         <button 
@@ -126,9 +126,9 @@ export const BookingModal = () => {
         </button>
 
         {/* Header Area */}
-        <div className="bg-[#203A47] px-8 py-8 border-b border-[#1C2530]">
-           <h3 className="font-['Cormorant_Garamond',serif] text-3xl font-semibold text-white mb-2">Book a <span className="text-[#7BACC4]">Consultation</span></h3>
-           <p className="text-[#C8D4DB] text-[13px] font-medium tracking-wide">Provide your details and we will callback shortly.</p>
+        <div className="bg-[#0c5d69] px-8 py-8 border-b border-[#0c5d69]">
+           <h3 className="font-['Cormorant_Garamond',serif] text-3xl font-semibold text-white mb-2">Book a <span className="text-[#cae2f2]">Consultation</span></h3>
+           <p className="text-[#cae2f2] text-[13px] font-medium tracking-wide">Provide your details and we will callback shortly.</p>
         </div>
 
         {/* Form Area */}
@@ -136,9 +136,9 @@ export const BookingModal = () => {
           <form onSubmit={formik.handleSubmit} className="space-y-6" noValidate>
             {/* Name Field */}
             <div className="space-y-2">
-              <label htmlFor="name" className="text-[#203A47] text-[13px] font-semibold uppercase tracking-wider w-full block">Full Name</label>
+              <label htmlFor="name" className="text-[#0c5d69] text-[13px] font-semibold uppercase tracking-wider w-full block">Full Name</label>
               <div className="relative">
-                <div className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${formik.touched.name && formik.errors.name ? 'text-red-500' : 'text-[#8499A8]'}`}>
+                <div className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${formik.touched.name && formik.errors.name ? 'text-red-500' : 'text-[#0c5d69]'}`}>
                   <User size={18} />
                 </div>
                 <input 
@@ -148,7 +148,7 @@ export const BookingModal = () => {
                   value={formik.values.name}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className={`w-full pl-11 pr-4 py-3.5 bg-white border rounded-xl focus:outline-none focus:ring-1 transition-all ${formik.touched.name && formik.errors.name ? 'border-red-500 focus:ring-red-500 focus:border-red-500 text-[#203A47]' : 'border-[#E3EAEF] focus:ring-[#5B8FA8] focus:border-[#5B8FA8] text-[#203A47] hover:border-[#C8D4DB]'}`}
+                  className={`w-full pl-11 pr-4 py-3.5 bg-white border rounded-xl focus:outline-none focus:ring-1 transition-all ${formik.touched.name && formik.errors.name ? 'border-red-500 focus:ring-red-500 focus:border-red-500 text-[#0c5d69]' : 'border-[#cae2f2] focus:ring-[#0c5d69] focus:border-[#0c5d69] text-[#0c5d69] hover:border-[#cae2f2]'}`}
                   placeholder="e.g. John Doe"
                 />
               </div>
@@ -159,9 +159,9 @@ export const BookingModal = () => {
 
             {/* Mobile Field */}
             <div className="space-y-2">
-              <label htmlFor="mobile" className="text-[#203A47] text-[13px] font-semibold uppercase tracking-wider w-full block">Phone Number</label>
+              <label htmlFor="mobile" className="text-[#0c5d69] text-[13px] font-semibold uppercase tracking-wider w-full block">Phone Number</label>
               <div className="relative">
-                <div className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${formik.touched.mobile && formik.errors.mobile ? 'text-red-500' : 'text-[#8499A8]'}`}>
+                <div className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${formik.touched.mobile && formik.errors.mobile ? 'text-red-500' : 'text-[#0c5d69]'}`}>
                   <Phone size={18} />
                 </div>
                 <input 
@@ -171,7 +171,7 @@ export const BookingModal = () => {
                   value={formik.values.mobile}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className={`w-full pl-11 pr-4 py-3.5 bg-white border rounded-xl focus:outline-none focus:ring-1 transition-all ${formik.touched.mobile && formik.errors.mobile ? 'border-red-500 focus:ring-red-500 focus:border-red-500 text-[#203A47]' : 'border-[#E3EAEF] focus:ring-[#5B8FA8] focus:border-[#5B8FA8] text-[#203A47] hover:border-[#C8D4DB]'}`}
+                  className={`w-full pl-11 pr-4 py-3.5 bg-white border rounded-xl focus:outline-none focus:ring-1 transition-all ${formik.touched.mobile && formik.errors.mobile ? 'border-red-500 focus:ring-red-500 focus:border-red-500 text-[#0c5d69]' : 'border-[#cae2f2] focus:ring-[#0c5d69] focus:border-[#0c5d69] text-[#0c5d69] hover:border-[#cae2f2]'}`}
                   placeholder="e.g. 98765 43210"
                 />
               </div>
@@ -184,7 +184,7 @@ export const BookingModal = () => {
               <button 
                 type="submit" 
                 disabled={isLoading}
-                className="w-full bg-[#5B8FA8] hover:bg-[#4A7D97] disabled:opacity-70 disabled:cursor-not-allowed text-white px-6 py-4 rounded-xl text-[15px] font-semibold transition-colors duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-[#5B8FA8]/20"
+                className="w-full bg-[#0c5d69] hover:bg-[#4A7D97] disabled:opacity-70 disabled:cursor-not-allowed text-white px-6 py-4 rounded-xl text-[15px] font-semibold transition-colors duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-[#0c5d69]/20"
               >
                 {isLoading ? (
                   <>
@@ -200,8 +200,8 @@ export const BookingModal = () => {
             </div>
           </form>
 
-          <p className="text-center text-[11px] font-medium uppercase tracking-widest text-[#8499A8] mt-8 flex items-center justify-center gap-2">
-            <CheckCircle2 size={14} className="text-[#7BACC4]" /> Secure & Private
+          <p className="text-center text-[11px] font-medium uppercase tracking-widest text-[#0c5d69] mt-8 flex items-center justify-center gap-2">
+            <CheckCircle2 size={14} className="text-[#cae2f2]" /> Secure & Private
           </p>
         </div>
       </div>

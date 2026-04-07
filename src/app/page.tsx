@@ -1,12 +1,14 @@
-"use client";
+﻿"use client";
 
 import React, { useEffect } from 'react';
 import { Navbar } from '@/components/sections/Navbar';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { AboutSection } from '@/components/sections/AboutSection';
+import { DoctorSection } from '@/components/sections/DoctorSection';
 import { TypesSection } from '@/components/sections/TypesSection';
 import { TreatmentSection } from '@/components/sections/TreatmentSection';
 import { FaqSection } from '@/components/sections/FaqSection';
+import { ReviewsSection } from '@/components/sections/ReviewsSection';
 import { CtaSection } from '@/components/sections/CtaSection';
 import { Footer } from '@/components/sections/Footer';
 import { BookingModal } from '@/components/ui/BookingModal';
@@ -28,12 +30,14 @@ export default function OptimusEyeCare() {
   }, []);
 
   return (
-    <div className="font-['Outfit',sans-serif] bg-white text-[#203A47] overflow-x-hidden">
+    <div className="font-['Outfit',sans-serif] bg-white text-[#0c5d69] overflow-x-hidden">
       <Navbar />
       <HeroSection />
       <AboutSection />
+      <DoctorSection />
       <TypesSection />
       <TreatmentSection />
+      <ReviewsSection />
       <FaqSection />
       <CtaSection />
       <Footer />
