@@ -1,10 +1,15 @@
+"use client";
+
 import React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { useBookingModal } from '@/components/ui/BookingModalContext';
 
 export const Footer = () => {
+  const { openModal } = useBookingModal();
   return (
-    <footer className="bg-[#0c5d69] pt-16 pb-8 border-t border-white/10">
+    <footer className="bg-black pt-16 pb-8 border-t border-white/10">
       <div className="container mx-auto px-6 md:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
 
@@ -25,15 +30,17 @@ export const Footer = () => {
             </h4>
             <ul className="space-y-3">
               {[
-                { label: 'About Us', href: '#about' },
-                { label: 'Services', href: '#treatment' },
-                { label: 'Our Doctors', href: '#specialists' },
-                { label: 'Contact', href: '#book' },
+                { label: 'About Us', href: '/#about' },
+                { label: 'Services', href: '/#treatment' },
+                { label: 'Our Doctors', href: '/#our-doctor' },
               ].map(link => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-white/70 hover:text-[#cae2f2] text-sm transition-colors">{link.label}</a>
+                  <Link href={link.href} className="text-white/70 hover:text-[#cae2f2] text-sm transition-colors">{link.label}</Link>
                 </li>
               ))}
+              <li>
+                <button onClick={openModal} className="text-white/70 hover:text-[#cae2f2] text-sm transition-colors text-left">Contact</button>
+              </li>
             </ul>
           </div>
 
@@ -84,8 +91,8 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-white/50 text-sm">
-            Copyright © {new Date().getFullYear()} All rights reserved | Design by{' '}
-            <a href="https://digisurgeon.in" target="_blank" rel="noopener noreferrer" className="text-[#cae2f2] hover:text-white transition-colors">Invictus Global Tech</a>
+            Copyright © {new Date().getFullYear()} All rights reserved | Powered by{' '}
+            <a href="https://www.invictusglobaltech.com/" target="_blank" rel="noopener noreferrer" className="text-[#2ab081] hover:text-[#2ab081] transition-colors">Invictus Global Tech</a>
           </div>
           <a href="#" className="text-white/50 hover:text-[#cae2f2] text-sm transition-colors">Privacy Policy</a>
         </div>

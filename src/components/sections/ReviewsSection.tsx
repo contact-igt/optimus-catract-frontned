@@ -1,168 +1,171 @@
 "use client";
 
-import React, { useRef } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import React from 'react';
 import { FadeIn } from '@/components/ui/FadeIn';
-import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { Star, Quote, ShieldCheck, MapPin, Award, Microscope, ExternalLink } from 'lucide-react';
 
-const reviews = [
-  {
-    name: 'Abhay Trivedi',
-    rating: 5,
-    text: "I recently visited Optimus Eye Hospital for my mother's eye treatment and I must say it was truly one of the best experiences I have ever had. The hospital is very clean, peaceful, and equipped with modern technologies. But what really makes this place special is the compassion and dedication of the entire team. The whole staff was very calm, polite, and always ready to assist. A special thanks to Dr. Arvind Verma Sir who helped my mother to improve her vision. I am very grateful for his dedication and professionalism. I would wholeheartedly recommend this hospital to anyone looking for trusted, high-quality eye care.",
-    highlight: 'Truly one of the best experiences',
-  },
-  {
-    name: 'Jitendra Verma',
-    rating: 5,
-    text: "Dr. Arvind Verma is an excellent surgeon in Lucknow. He is very humble and explained everything about the treatment in very easy language. We are very satisfied with his treatment. Most recommended cataract surgeon in Lucknow!",
-    highlight: 'Most recommended cataract surgeon',
-  },
-  {
-    name: 'Phool Singh',
-    rating: 5,
-    text: "All facilities, newest technology machines, experienced and trained staff, fully equipped eye hospital with the finest eye surgeon and excellent results. I recommend this eye hospital to be one of the best in Lucknow.",
-    highlight: 'One of the best in Lucknow',
-  },
-  {
-    name: 'Shweta Singh',
-    rating: 5,
-    text: "Awesome service. Dr Arvind Verma is very good doctor and take good care of his patients . I had eye surgery from this hospital. They have treated me well with reasonable charges .",
-    highlight: 'Awesome service',
-  },
+const review = {
+  name: 'Rajesh Kumar',
+  location: 'Arjunganj',
+  rating: 5,
+  highlight: 'Exceptional Cataract Surgery Experience',
+  text: 'I had cataract surgery at Optimus Eye Hospital and the entire process was smooth and painless. Dr. Arvind Verma explained everything clearly and the advanced technology made me feel completely safe. My vision is now crystal clear. Extremely grateful to the entire team.',
+};
+
+const proofPoints = [
+  { icon: <Star size={15} fill="#f59e0b" stroke="#f59e0b" />, label: 'Rated 4.6 Stars on Google' },
+  { icon: <MapPin size={15} />, label: 'Trusted by cataract patients in Lucknow' },
+  { icon: <Award size={15} />, label: 'NABH Certified infrastructure' },
+  { icon: <Microscope size={15} />, label: 'Advanced technology & patient-focused care' },
 ];
 
 export const ReviewsSection = () => {
-  const sliderRef = useRef<Slider>(null);
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 600,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    pauseOnHover: true,
-  };
-
   return (
-    <section id="reviews" className="py-20 lg:py-28 bg-[#0c5d69] relative overflow-hidden">
+    <section id="reviews" className="py-10 lg:py-12 bg-[#0c5d69] relative overflow-hidden">
       {/* Background decor */}
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#cae2f2]/5 rounded-full blur-[140px] -ml-64 -mt-64 pointer-events-none"></div>
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#cae2f2]/5 rounded-full blur-[120px] -mr-48 -mb-48 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#13a2b7]/10 rounded-full blur-[140px] opacity-50 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#cae2f2]/5 rounded-full blur-[120px] opacity-40 pointer-events-none" />
 
-      <div className="container mx-auto px-6 md:px-16 relative z-10 w-full">
+      <div className="container mx-auto px-6 md:px-16 relative z-10 w-full max-w-7xl">
 
-        {/* Header */}
-        <FadeIn className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center justify-center gap-3 text-[12px] font-semibold tracking-[0.15em] text-[#cae2f2] uppercase mb-4">
-            <span className="w-6 h-0.5 bg-[#13a2b7]"></span> Patient Reviews <span className="w-6 h-0.5 bg-[#13a2b7]"></span>
+        {/* Section Header */}
+        <FadeIn className="text-center max-w-3xl mx-auto mb-8">
+          <div className="inline-flex items-center justify-center gap-3 text-[12px] font-semibold tracking-[0.15em] text-[#cae2f2] uppercase mb-3">
+            <span className="w-6 h-0.5 bg-[#13a2b7]" />
+            Patient Testimonials
+            <span className="w-6 h-0.5 bg-[#13a2b7]" />
           </div>
-          <h2 className="font-['Cormorant_Garamond',serif] text-4xl md:text-5xl font-bold text-white mb-4">
-            What Our Patients <span className="italic text-[#cae2f2]">Say</span>
+          <h2 className="font-['Cormorant_Garamond',serif] text-4xl md:text-5xl font-extrabold text-white mb-3 leading-snug">
+            Why patients trust{' '}
+            <span className="italic text-[#cae2f2]">Optimus Eye Hospital</span>
           </h2>
-          <p className="text-white/60 text-lg font-light leading-relaxed">
-            Real stories from real patients — hear directly from those who trusted us with their vision.
+          <p className="text-white/95 text-lg font-normal leading-relaxed">
+            Choosing cataract surgery is a big decision. That is why real patient trust matters. At Optimus Eye Hospital, patients appreciate the clear guidance, advanced technology, supportive team, and smooth treatment experience.
           </p>
-
-          {/* Google Rating Badge */}
-          <div className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-full bg-white/10 border border-white/10 backdrop-blur-sm">
-            <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none">
-              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
-              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-            </svg>
-            <div className="flex gap-0.5">
-              {[1, 2, 3, 4, 5].map(s => (
-                <Star key={s} size={14} fill="#FBBC05" stroke="#FBBC05" />
-              ))}
-            </div>
-            <span className="text-white text-sm font-semibold">5.0</span>
-            <span className="text-white/50 text-xs">on Google</span>
-          </div>
         </FadeIn>
 
-        {/* Review Slider */}
-        <div className="max-w-4xl mx-auto relative">
-          {/* Prev */}
-          <button
-            onClick={() => sliderRef.current?.slickPrev()}
-            aria-label="Previous review"
-            className="absolute -left-5 lg:-left-14 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 border border-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-all"
-          >
-            <ChevronLeft size={20} />
-          </button>
+        {/* Two-column layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-5 lg:gap-8 items-start">
 
-          <Slider ref={sliderRef} {...settings}>
-            {reviews.map((review, i) => (
-              <div key={i} className="px-2">
-                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 sm:p-10 relative">
-                  {/* Quote icon */}
-                  <Quote size={40} className="text-[#13a2b7]/30 absolute top-6 right-8" />
+          {/* ── Left: Single Testimonial Card ── */}
+          <FadeIn>
+            <div className="bg-white rounded-2xl p-5 sm:p-7 relative">
+              {/* Decorative quote icon */}
+              <div className="absolute top-5 right-6 text-[#13a2b7]/10">
+                <Quote size={48} />
+              </div>
 
-                  {/* Stars */}
-                  <div className="flex gap-1 mb-5">
-                    {Array.from({ length: review.rating }).map((_, s) => (
-                      <Star key={s} size={18} fill="#FBBC05" stroke="#FBBC05" />
-                    ))}
-                  </div>
+              {/* Stars */}
+              <div className="flex gap-1 mb-4">
+                {Array.from({ length: review.rating }).map((_, i) => (
+                  <Star key={i} size={20} fill="#f59e0b" stroke="#f59e0b" />
+                ))}
+              </div>
 
-                  {/* Highlight */}
-                  <p className="font-['Cormorant_Garamond',serif] text-2xl sm:text-3xl font-semibold text-white italic leading-snug mb-5">
-                    &ldquo;{review.highlight}&rdquo;
-                  </p>
+              {/* Highlight quote */}
+              <p className="font-['Cormorant_Garamond',serif] text-2xl sm:text-3xl font-bold text-[#0c5d69] italic leading-snug mb-3">
+                &ldquo;{review.highlight}&rdquo;
+              </p>
 
-                  {/* Full Review */}
-                  <p className="text-white/65 text-sm sm:text-[15px] leading-relaxed mb-8">
-                    {review.text}
-                  </p>
+              {/* Full review text */}
+              <p className="text-[#0c5d69]/90 text-base leading-relaxed mb-5">
+                {review.text}
+              </p>
 
-                  {/* Reviewer */}
-                  <div className="flex items-center gap-3 border-t border-white/10 pt-5">
-                    <div className="w-10 h-10 rounded-full bg-[#13a2b7] flex items-center justify-center text-white font-bold text-sm">
-                      {review.name.split(' ').map(n => n[0]).join('')}
-                    </div>
-                    <div>
-                      <p className="text-white font-semibold text-sm">{review.name}</p>
-                      <p className="text-white/40 text-xs">Google Review</p>
-                    </div>
-                  </div>
+              {/* Reviewer info */}
+              <div className="flex items-center gap-4 border-t border-[#e0f0f5] pt-4">
+                <div className="w-12 h-12 rounded-full bg-[#0c5d69] flex items-center justify-center text-white font-bold text-base flex-shrink-0">
+                  {review.name.split(' ').map(n => n[0]).join('')}
+                </div>
+                <div className="flex-1">
+                  <p className="text-[#0c5d69] font-bold text-base">{review.name}</p>
+                  <p className="text-[#0c5d69]/60 text-sm mt-0.5">{review.location} · Google Review</p>
+                </div>
+                {/* Google logo */}
+                <div className="flex items-center gap-2 bg-[#34A853]/10 border border-[#34A853]/25 rounded-xl px-3 py-2">
+                  <svg viewBox="0 0 24 24" className="w-4 h-4 flex-shrink-0" fill="none">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4" />
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+                  </svg>
+                  <span className="text-[#34A853] text-xs font-semibold">Verified</span>
                 </div>
               </div>
-            ))}
-          </Slider>
 
-          {/* Next */}
-          <button
-            onClick={() => sliderRef.current?.slickNext()}
-            aria-label="Next review"
-            className="absolute -right-5 lg:-right-14 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 border border-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-all"
-          >
-            <ChevronRight size={20} />
-          </button>
+              {/* View all link */}
+              <div className="mt-6">
+                <a
+                  href="https://search.google.com/local/reviews?placeid=ChIJn1o5tfn9mzkRAywcdSpCT50"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[#13a2b7] hover:text-[#0c5d69] text-sm font-medium transition-colors"
+                >
+                  View all Google Reviews <ExternalLink size={13} />
+                </a>
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* ── Right: Proof / Trust Sidebar ── */}
+          <FadeIn delay={150}>
+            <div className="space-y-3">
+
+              {/* Google rating card */}
+              <div className="bg-white rounded-2xl p-5 relative overflow-hidden">
+                <div className="absolute -top-8 -right-8 w-36 h-36 bg-[#cae2f2]/40 rounded-full blur-2xl pointer-events-none" />
+                <div className="relative z-10">
+                  <p className="text-[#4285F4] text-xs font-semibold uppercase tracking-widest mb-2">Google Rating</p>
+                  <div className="flex items-end gap-3 mb-2">
+                    <span className="text-5xl font-bold text-[#0c5d69] leading-none">4.6</span>
+                    <div className="pb-1">
+                      <div className="flex gap-0.5 mb-0.5">
+                        {[1, 2, 3, 4].map(s => <Star key={s} size={14} fill="#f59e0b" stroke="#f59e0b" />)}
+                        <Star size={14} fill="#f59e0b" stroke="#f59e0b" style={{ opacity: 0.45 }} />
+                      </div>
+                      <p className="text-[#0c5d69]/45 text-xs">Based on patient reviews</p>
+                    </div>
+                  </div>
+                  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none">
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4" />
+                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
+                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Proof points */}
+              <div className="bg-white rounded-2xl p-5">
+                <p className="text-[#0c5d69] text-[11px] font-semibold uppercase tracking-widest mb-4">Why patients choose us</p>
+                <div className="space-y-3">
+                  {proofPoints.map((pt, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-[#f0f8ff] text-[#13a2b7] flex items-center justify-center flex-shrink-0">
+                        {pt.icon}
+                      </div>
+                      <p className="text-[#0c5d69]/75 text-sm leading-snug">{pt.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* NABH badge */}
+              <div className="bg-white rounded-2xl p-5 flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-[#f0f8ff] flex items-center justify-center flex-shrink-0">
+                  <ShieldCheck size={22} className="text-[#0c5d69]" />
+                </div>
+                <div>
+                  <p className="text-[#0c5d69] font-semibold text-sm">NABH Certified</p>
+                  <p className="text-[#0c5d69]/55 text-xs leading-snug mt-0.5">National Accreditation Board for Hospitals & Healthcare Providers</p>
+                </div>
+              </div>
+
+            </div>
+          </FadeIn>
+
         </div>
       </div>
-
-      {/* Slick dot styles */}
-      <style>{`
-        #reviews .slick-dots li button:before {
-          color: rgba(255,255,255,0.3);
-          font-size: 10px;
-          opacity: 1;
-        }
-        #reviews .slick-dots li.slick-active button:before {
-          color: #13a2b7;
-          opacity: 1;
-        }
-        #reviews .slick-dots {
-          bottom: -2rem;
-        }
-      `}</style>
     </section>
   );
 };

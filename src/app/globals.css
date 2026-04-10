@@ -1,9 +1,13 @@
 @import "tailwindcss";
 
+@theme {
+  --breakpoint-xl: 75rem;
+}
+
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    background-color: white;
+  background-color: white;
 }

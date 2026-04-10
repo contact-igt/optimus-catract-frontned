@@ -1,208 +1,96 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from 'react';
-import { X, User, Phone, ArrowRight, CheckCircle2, Loader2 } from 'lucide-react';
-import { useFormik } from 'formik';
-import { z } from 'zod';
-
-// Zod Validation Schema equivalent to Yup in the user request
-const bookingSchema = z.object({
-  name: z.string()
-    .min(1, "Name is required")
-    .regex(/^[A-Za-z\s']+$/, "Enter valid name"),
-  mobile: z.string()
-    .min(1, "Mobile is required")
-    .regex(/^[0-9]{10}$/, "Mobile must be 10 digits"),
-});
-
-// Custom validation function for Formik using Zod
-const validateWithZod = (values: any) => {
-  const result = bookingSchema.safeParse(values);
-  if (result.success) return {};
-  
-  const errors: Record<string, string> = {};
-  result.error.issues.forEach((issue) => {
-    if (issue.path[0]) {
-      errors[issue.path[0] as string] = issue.message;
-    }
-  });
-  return errors;
-};
+import { X, CalendarDays, CheckCircle2 } from 'lucide-react';
+import { useBookingModal } from './BookingModalContext';
+import { BookingForm } from './BookingForm';
 
 export const BookingModal = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setisLoading] = useState(false);
+  const { isOpen, closeModal } = useBookingModal();
 
-  // Listen for clicks on elements with href="#book"
+  // Lock body scroll when modal is open
   useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const link = target.closest('a');
-      
-      if (link && link.getAttribute('href') === '#book' || link && link.getAttribute('href') === '#consultation') {
-        e.preventDefault();
-        setIsOpen(true);
-      }
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
+
+  // Close on Escape key
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeModal();
     };
-
-    document.addEventListener('click', handleClick);
-    return () => document.removeEventListener('click', handleClick);
-  }, []);
-
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      mobile: "",
-    },
-    validate: validateWithZod,
-    onSubmit: async (value, { resetForm }) => {
-      try {
-        setisLoading(true);
-
-        // Fetch user IP
-        const ipResponse = await fetch("https://api.ipify.org?format=json");
-        const ipData = await ipResponse.json();
-
-        const Formdata = {
-          Name: value.name,
-          MobileNumber: value.mobile,
-          IP_Address: ipData.ip,
-          utm_source: typeof window !== 'undefined' ? localStorage.getItem("utm_source") || 'direct' : 'direct',
-        };
-
-        const params = new URLSearchParams();
-        Object.entries(Formdata).forEach(([key, val]) => {
-          params.append(key, val || '');
-        });
-
-        // Google Sheets Script Endpoint
-        const res = await fetch(
-          "https://script.google.com/macros/s/AKfycbyUhRQTTgrc7FmlWBzgAfpVWotsVrhgf8zNSl7x2lWyANKXs3mL2GNfVonk9RJKYde4/exec",
-          {
-            method: "POST",
-            mode: 'no-cors', // Google Apps Script usually requires no-cors if not handling OPTIONS
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: params.toString(),
-          }
-        );
-
-        // Reset and redirect
-        resetForm();
-        setIsOpen(false);
-        
-        if (typeof window !== 'undefined') {
-          window.location.href = "/thank-you";
-        }
-      } catch (err) {
-        console.error("Error submitting form:", err);
-        setIsOpen(false);
-      } finally {
-        setisLoading(false);
-      }
-    },
-  });
+    if (isOpen) document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [isOpen, closeModal]);
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Book a Consultation"
+    >
       {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-[#0c5d69]/80 backdrop-blur-sm transition-opacity animate-in fade-in duration-300"
-        onClick={() => setIsOpen(false)}
-      ></div>
+      <div
+        className="absolute inset-0 bg-[#0c5d69]/80 backdrop-blur-sm"
+        onClick={closeModal}
+        aria-hidden="true"
+      />
 
       {/* Modal Box */}
-      <div className="relative bg-white rounded-3xl w-full max-w-md shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] overflow-hidden border border-[#cae2f2] animate-in fade-in zoom-in-95 duration-300">
-        
+      <div className="relative bg-white rounded-[2rem] w-full max-w-md overflow-hidden shadow-2xl shadow-[#0c5d69]/20 border border-[#cae2f2]/50 animate-in fade-in zoom-in-95 duration-400">
+
         {/* Close Button */}
-        <button 
-          onClick={() => setIsOpen(false)}
-          className="absolute top-6 right-6 p-2 text-white/50 hover:text-white hover:bg-white/10 rounded-full transition-colors z-20"
+        <button
+          onClick={closeModal}
+          aria-label="Close modal"
+          className="absolute top-5 right-5 p-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white/80 hover:text-white rounded-full transition-all z-20 hover:scale-105 hover:rotate-90 backdrop-blur-sm"
         >
-          <X size={20} />
+          <X size={18} />
         </button>
 
-        {/* Header Area */}
-        <div className="bg-[#0c5d69] px-8 py-8 border-b border-[#0c5d69]">
-           <h3 className="font-['Cormorant_Garamond',serif] text-3xl font-semibold text-white mb-2">Book a <span className="text-[#cae2f2]">Consultation</span></h3>
-           <p className="text-[#cae2f2] text-[13px] font-medium tracking-wide">Provide your details and we will callback shortly.</p>
+        {/* Premium Solid Header */}
+        <div className="relative bg-[#0c5d69] px-8 py-10 overflow-hidden">
+          {/* Subtle Grid Pattern for texture */}
+          <div className="absolute inset-0 opacity-10">
+            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+              <defs><pattern id="modal-solid-grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M 24 0 L 0 0 0 24" fill="none" stroke="white" strokeWidth="1" /></pattern></defs><rect width="100%" height="100%" fill="url(#modal-solid-grid)" />
+            </svg>
+          </div>
+
+          <div className="relative z-10">
+            <div className="flex items-center gap-4 mb-3">
+              <div className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl flex flex-shrink-0 items-center justify-center">
+                <CalendarDays size={22} className="text-white" />
+              </div>
+              <h3 className="font-['Cormorant_Garamond',serif] text-[2.1rem] leading-tight font-bold text-white tracking-tight">
+                Book a <span className="italic text-[#cae2f2] font-semibold">Consultation</span>
+              </h3>
+            </div>
+            <p className="text-white/80 text-[14px] font-medium tracking-wide mt-1">
+              Leave your details and our care team will contact you shortly.
+            </p>
+          </div>
         </div>
 
-        {/* Form Area */}
-        <div className="p-8">
-          <form onSubmit={formik.handleSubmit} className="space-y-6" noValidate>
-            {/* Name Field */}
-            <div className="space-y-2">
-              <label htmlFor="name" className="text-[#0c5d69] text-[13px] font-semibold uppercase tracking-wider w-full block">Full Name</label>
-              <div className="relative">
-                <div className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${formik.touched.name && formik.errors.name ? 'text-red-500' : 'text-[#0c5d69]'}`}>
-                  <User size={18} />
-                </div>
-                <input 
-                  type="text" 
-                  id="name" 
-                  name="name"
-                  value={formik.values.name}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  className={`w-full pl-11 pr-4 py-3.5 bg-white border rounded-xl focus:outline-none focus:ring-1 transition-all ${formik.touched.name && formik.errors.name ? 'border-red-500 focus:ring-red-500 focus:border-red-500 text-[#0c5d69]' : 'border-[#cae2f2] focus:ring-[#0c5d69] focus:border-[#0c5d69] text-[#0c5d69] hover:border-[#cae2f2]'}`}
-                  placeholder="e.g. John Doe"
-                />
-              </div>
-              {formik.touched.name && formik.errors.name && (
-                <p className="text-red-500 text-[12px] font-medium tracking-wide animate-in slide-in-from-top-1">{formik.errors.name}</p>
-              )}
-            </div>
+        {/* Form Body */}
+        <div className="p-8 bg-white">
+          <BookingForm onSuccess={closeModal} />
 
-            {/* Mobile Field */}
-            <div className="space-y-2">
-              <label htmlFor="mobile" className="text-[#0c5d69] text-[13px] font-semibold uppercase tracking-wider w-full block">Phone Number</label>
-              <div className="relative">
-                <div className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${formik.touched.mobile && formik.errors.mobile ? 'text-red-500' : 'text-[#0c5d69]'}`}>
-                  <Phone size={18} />
-                </div>
-                <input 
-                  type="tel" 
-                  id="mobile" 
-                  name="mobile"
-                  value={formik.values.mobile}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  className={`w-full pl-11 pr-4 py-3.5 bg-white border rounded-xl focus:outline-none focus:ring-1 transition-all ${formik.touched.mobile && formik.errors.mobile ? 'border-red-500 focus:ring-red-500 focus:border-red-500 text-[#0c5d69]' : 'border-[#cae2f2] focus:ring-[#0c5d69] focus:border-[#0c5d69] text-[#0c5d69] hover:border-[#cae2f2]'}`}
-                  placeholder="e.g. 98765 43210"
-                />
-              </div>
-              {formik.touched.mobile && formik.errors.mobile && (
-                <p className="text-red-500 text-[12px] font-medium tracking-wide animate-in slide-in-from-top-1">{formik.errors.mobile}</p>
-              )}
-            </div>
-
-            <div className="pt-4">
-              <button 
-                type="submit" 
-                disabled={isLoading}
-                className="w-full bg-[#0c5d69] hover:bg-[#4A7D97] disabled:opacity-70 disabled:cursor-not-allowed text-white px-6 py-4 rounded-xl text-[15px] font-semibold transition-colors duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-[#0c5d69]/20"
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2 size={18} className="animate-spin" />
-                    Processing...
-                  </>
-                ) : (
-                  <>
-                    Book Consultation <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform"/>
-                  </>
-                )}
-              </button>
-            </div>
-          </form>
-
-          <p className="text-center text-[11px] font-medium uppercase tracking-widest text-[#0c5d69] mt-8 flex items-center justify-center gap-2">
-            <CheckCircle2 size={14} className="text-[#cae2f2]" /> Secure & Private
-          </p>
+          {/* Footer Assurances */}
+          <div className="mt-7 flex items-center justify-center gap-2">
+            <div className="h-px w-full bg-[#cae2f2]/60" />
+            <p className="flex-shrink-0 text-[10px] font-bold uppercase tracking-[0.15em] text-[#0c5d69]/50 flex items-center gap-1.5 px-3">
+              <CheckCircle2 size={13} className="text-[#13a2b7]" /> Secure &amp; Private
+            </p>
+            <div className="h-px w-full bg-[#cae2f2]/60" />
+          </div>
         </div>
       </div>
     </div>
