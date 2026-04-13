@@ -2,72 +2,144 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { CheckCircle2, ArrowLeft, Calendar, Phone, Mail } from 'lucide-react';
+import { Cormorant_Garamond, Outfit } from 'next/font/google';
+import { CheckCircle2, ArrowLeft, Calendar, Clock3, MessageCircle, Phone } from 'lucide-react';
+import { Navbar } from '@/components/sections/Navbar';
+import { Footer } from '@/components/sections/Footer';
+
+const headingFont = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+});
+
+const bodyFont = Outfit({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+});
 
 export default function ThankYouPage() {
   return (
-    <main className="min-h-screen bg-[#F8FAFB] flex items-center justify-center p-6 relative overflow-hidden">
-      {/* Decorative Blur Orbs */}
-      <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-[#5B8FA8]/10 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#7BACC4]/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div className={bodyFont.className}>
+      <Navbar />
+      <main className="min-h-screen bg-[#F8FAFB] relative overflow-hidden pt-24">
+        {/* Decorative Blur Orbs */}
+        <div className="absolute top-[-10%] right-[-10%] h-125 w-125 bg-[#0c5d69]/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="absolute bottom-[-10%] left-[-10%] h-125 w-125 bg-[#cae2f2]/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-      <div className="max-w-xl w-full relative z-10">
-        <div className="bg-white rounded-[40px] shadow-[0_40px_80px_-20px_rgba(32,58,71,0.1)] border border-[#E3EAEF] overflow-hidden p-12 text-center">
-          
-          {/* Success Icon */}
-          <div className="w-24 h-24 bg-[#EDF2F5] rounded-full flex items-center justify-center mx-auto mb-8 text-[#5B8FA8] border-8 border-white shadow-xl animate-in zoom-in duration-700">
-            <CheckCircle2 size={48} strokeWidth={1.5} />
-          </div>
+        <div className="container mx-auto px-6 py-16 lg:py-24 relative z-10">
+          <div className="max-w-5xl mx-auto">
 
-          {/* Heading */}
-          <h1 className="font-['Cormorant_Garamond',serif] text-5xl font-semibold text-[#203A47] mb-6 animate-in slide-in-from-bottom-4 duration-700">
-            Thank You for <span className="text-[#5B8FA8]">Choosing Us</span>
-          </h1>
+            {/* Top: Success Card */}
+            <div className="bg-white rounded-[2.5rem] shadow-[0_40px_80px_-20px_rgba(32,58,71,0.1)] border border-[#cae2f2] overflow-hidden p-8 sm:p-12 text-center mb-12">
 
-          {/* Message */}
-          <p className="text-[#4A5A68] text-lg leading-relaxed mb-10 max-w-md mx-auto animate-in slide-in-from-bottom-8 duration-700 delay-100">
-            Your consultation request has been received. Our patient care coordinator will call you within the next <b>30 minutes</b> to confirm your appointment.
-          </p>
-
-          {/* Info Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 animate-in slide-in-from-bottom-12 duration-700 delay-200">
-            <div className="flex items-center gap-4 p-4 rounded-2xl bg-[#F8FAFB] border border-[#E3EAEF]">
-              <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-[#5B8FA8]">
-                <Calendar size={20} />
+              {/* Success Icon */}
+              <div className="w-20 h-20 bg-[#0c5d69] rounded-full flex items-center justify-center mx-auto mb-6 text-white shadow-[0_8px_30px_rgba(12,93,105,0.3)]">
+                <CheckCircle2 size={40} strokeWidth={1.5} />
               </div>
-              <div className="text-left">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-[#8499A8]">Response Time</p>
-                <p className="text-[#203A47] font-semibold text-sm">Under 30 Mins</p>
+
+              <h1 className={`${headingFont.className} text-4xl md:text-5xl font-semibold text-[#0c5d69] mb-4`}>
+                Thank You for <span className="italic text-[#13a2b7]">Choosing Us</span>
+              </h1>
+
+              <p className="text-[#0c5d69]/70 text-lg leading-relaxed mb-8 max-w-lg mx-auto">
+                Your consultation request has been received. Our patient care coordinator will call you within the next <strong className="text-[#0c5d69]">30 minutes</strong> to confirm your appointment.
+              </p>
+
+              <div className="grid gap-4 md:grid-cols-3 mb-8 text-left">
+                <div className="rounded-[1.75rem] border border-[#cae2f2] bg-[#F8FAFB] p-5 shadow-[0_12px_35px_-30px_rgba(12,93,105,0.55)]">
+                  <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-[#0c5d69] shadow-sm">
+                    <Clock3 size={20} />
+                  </div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#0c5d69]/45">What happens next</p>
+                  <p className="mt-2 text-base font-semibold text-[#0c5d69]">Quick callback confirmation</p>
+                  <p className="mt-2 text-sm leading-6 text-[#0c5d69]/70">A coordinator will review your request, confirm your preferred timing, and guide you on the next step.</p>
+                </div>
+                <div className="rounded-[1.75rem] border border-[#cae2f2] bg-[#F8FAFB] p-5 shadow-[0_12px_35px_-30px_rgba(12,93,105,0.55)]">
+                  <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-[#0c5d69] shadow-sm">
+                    <Calendar size={20} />
+                  </div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#0c5d69]/45">Appointment support</p>
+                  <p className="mt-2 text-base font-semibold text-[#0c5d69]">Consultation scheduling help</p>
+                  <p className="mt-2 text-sm leading-6 text-[#0c5d69]/70">Need a faster slot or want to reschedule? Our team can help you lock the most convenient appointment time.</p>
+                </div>
+                <div className="rounded-[1.75rem] border border-[#cae2f2] bg-[#F8FAFB] p-5 shadow-[0_12px_35px_-30px_rgba(12,93,105,0.55)]">
+                  <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-[#0c5d69] shadow-sm">
+                    <MessageCircle size={20} />
+                  </div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#0c5d69]/45">Need urgent help</p>
+                  <p className="mt-2 text-base font-semibold text-[#0c5d69]">Call or WhatsApp now</p>
+                  <p className="mt-2 text-sm leading-6 text-[#0c5d69]/70">If your concern is urgent, contact the hospital team directly and mention your name plus eye concern for a quicker response.</p>
+                </div>
               </div>
+
+              {/* Info Cards */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+                <div className="flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-[#F8FAFB] border border-[#cae2f2]">
+                  <div className="w-9 h-9 bg-white rounded-xl shadow-sm flex items-center justify-center text-[#0c5d69]">
+                    <Calendar size={18} />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-[#0c5d69]/50">Response Time</p>
+                    <p className="text-[#0c5d69] font-semibold text-sm">Under 30 Mins</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-[#F8FAFB] border border-[#cae2f2]">
+                  <div className="w-9 h-9 bg-white rounded-xl shadow-sm flex items-center justify-center text-[#0c5d69]">
+                    <Phone size={18} />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-[#0c5d69]/50">Support Call</p>
+                    <p className="text-[#0c5d69] font-semibold text-sm">+91 9919965200</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-8 rounded-4xl border border-[#cae2f2] bg-[linear-gradient(135deg,rgba(12,93,105,0.06),rgba(19,162,183,0.12))] p-6 text-left">
+                <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+                  <div className="max-w-2xl">
+                    <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#0c5d69]/50">Direct support</p>
+                    <h2 className={`${headingFont.className} mt-2 text-3xl font-semibold text-[#0c5d69]`}>Speak to our care team right away</h2>
+                    <p className="mt-2 text-sm leading-6 text-[#0c5d69]/75">Use the buttons below if you want immediate help with consultation timing, directions, or pre-visit questions.</p>
+                  </div>
+                  <div className="flex flex-col items-start sm:flex-row sm:items-center gap-3">
+                    <a
+                      href="tel:+919919965200"
+                      className="inline-flex items-center justify-center gap-2 self-start whitespace-nowrap rounded-xl bg-[#0c5d69] px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+                    >
+                      <Phone size={17} />
+                      Call Now
+                    </a>
+                    <a
+                      href="https://wa.me/919919965200"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center gap-2 self-start whitespace-nowrap rounded-xl border border-[#25D366] bg-[#25D366] px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1ebe5a] hover:border-[#1ebe5a] hover:shadow-lg"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                        <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+                      </svg>
+                      WhatsApp Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 bg-[#13a2b7] hover:bg-[#0f8fa1] text-white px-7 py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 hover:shadow-lg group"
+              >
+                <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+                Back to Homepage
+              </Link>
             </div>
-            <div className="flex items-center gap-4 p-4 rounded-2xl bg-[#F8FAFB] border border-[#E3EAEF]">
-              <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-[#5B8FA8]">
-                <Phone size={20} />
-              </div>
-              <div className="text-left">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-[#8499A8]">Support Call</p>
-                <p className="text-[#203A47] font-semibold text-sm">+91 98765 43210</p>
-              </div>
-            </div>
-          </div>
 
-          {/* Action Button */}
-          <Link 
-            href="/"
-            className="inline-flex items-center gap-2 bg-[#203A47] hover:bg-[#1C2530] text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 hover:shadow-xl hover:shadow-[#203A47]/20 group active:scale-[0.98] animate-in slide-in-from-bottom-16 duration-700 delay-300"
-          >
-            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-            Back to Homepage
-          </Link>
 
-          {/* Social / Footer Info */}
-          <div className="mt-12 pt-8 border-t border-[#E3EAEF] flex items-center justify-center gap-8 animate-in fade-in duration-1000 delay-500">
-             <div className="flex items-center gap-2 text-[#8499A8] text-sm font-medium">
-               <Mail size={16} /> appointment@optimuseye.com
-             </div>
+
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+      <Footer />
+    </div>
   );
 }
