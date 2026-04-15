@@ -111,9 +111,9 @@ export const TreatmentSection = () => {
             MIDDLE: 3-Step Treatment Process
         ═══════════════════════════════════ */}
         <FadeIn>
-          <div className="space-y-5">
+          <div className="space-y-5 mt-10">
             <div className="text-center">
-              <p className="text-[#0c5d69] text-[11px] font-semibold uppercase tracking-widest mb-1.5">Treatment Process</p>
+              <p className="text-[#0c5d69] text-[11px] font-semibold uppercase tracking-widest mb-1.5 mt-2">Treatment Process</p>
               <div className="w-12 h-0.5 bg-[#13a2b7] mx-auto rounded-full" />
             </div>
 
