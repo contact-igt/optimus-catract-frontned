@@ -14,7 +14,7 @@ const doctors = [
     badge: "Senior Cataract and Refractive Surgeon",
     summary:
       "Dr. Arvind Verma is one of the key specialists at Optimus Eye Hospital for cataract treatment. Patients trust him for clear consultation, safe treatment planning, and a reassuring approach that reduces fear before surgery.",
-    highlights: ["Premium Cataract Surgery", "FLACS & LASIK", "Refractive Care"],
+    highlights: ["Senior Cataract Surgeon", "Refractive Care"],
     image: "/assets/Dr. Arvind.png",
     accent: "#0c5d69",
     imageRight: false,

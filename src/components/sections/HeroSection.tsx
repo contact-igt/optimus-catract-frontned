@@ -198,7 +198,7 @@ export const HeroSection = () => {
                       <CalendarDays size={20} className="text-white" />
                     </div>
                     <h3 className="font-['Cormorant_Garamond',serif] text-[1.75rem] leading-tight font-bold text-white">
-                      Book LASIK <span className="italic text-[#cae2f2]">Consultation</span>
+                      Book Cataract <span className="italic text-[#cae2f2]">Consultation</span>
                     </h3>
                   </div>
                   <p className="text-white/75 text-[13px]">Our team will call you within 30 minutes.</p>
